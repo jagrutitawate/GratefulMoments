@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7F057FEA-6557-47AE-91CA-02BB71738071"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E019DC3-40F2-447E-BDE2-B8BE0926107A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GratefulMoments/Models/Moment.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "Moment"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "2E019DC3-40F2-447E-BDE2-B8BE0926107A - 8a6852e3e140ccdb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for imageSample"
+                  moduleName = "GratefulMoments.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jagrutiparab/Documents/Github/Jagruti/GratefulMoments/GratefulMoments/Models/Moment.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36">
+               </Location>
+               <Location
+                  uuid = "2E019DC3-40F2-447E-BDE2-B8BE0926107A - 15d76845546d7fe5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GratefulMoments.Moment.imageSample.unsafeMutableAddressor : GratefulMoments.Moment"
+                  moduleName = "GratefulMoments.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jagrutiparab/Documents/Github/Jagruti/GratefulMoments/GratefulMoments/Models/Moment.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

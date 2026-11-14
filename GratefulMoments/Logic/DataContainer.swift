@@ -20,6 +20,7 @@ class DataContainer {
     
     init(includeSampleMoments: Bool = false) {
         let schema = Schema([
+            Item.self,
             Moment.self,
         ])
 

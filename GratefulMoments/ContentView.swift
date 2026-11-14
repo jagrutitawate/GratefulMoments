@@ -9,72 +9,78 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+
+    @Query(sort: \Moment.timestamp, order: .reverse)
+    private var moments: [Moment]
+
+    @State private var showingMomentEntry = false
 
     var body: some View {
-        NavigationViewWrapper {
+
+        NavigationStack {
+
             List {
-                ForEach(items) { item in
+
+                ForEach(moments) { moment in
+
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        MomentDetailView(moment: moment)
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+
+                        VStack(alignment: .leading, spacing: 5) {
+
+                            Text(moment.title)
+                                .font(.headline)
+
+                            Text(
+                                moment.timestamp,
+                                format: .dateTime
+                                    .day()
+                                    .month()
+                                    .year()
+                            )
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteMoments)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
+            .navigationTitle("Grateful Moments")
             .toolbar {
-#if os(iOS)
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showingMomentEntry = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
             }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            .sheet(isPresented: $showingMomentEntry) {
+                MomentEntryView()
             }
         }
     }
-}
 
-fileprivate struct NavigationViewWrapper<Content: View>: View {
-    let content: () -> Content
+    private func deleteMoments(offsets: IndexSet) {
 
-    var body: some View {
-#if os(macOS)
-        NavigationSplitView {
-            content()
-        } detail: {
-            Text("Select an item")
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(moments[index])
+            }
         }
-#else
-        content()
-#endif
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Moment.self, inMemory: true)
+        .environment(DataContainer(includeSampleMoments: true))
 }
